@@ -6,9 +6,10 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-public class KioskFireFox {
+public class KioskCSFireFox {
 
-	static KioskButtons buttons = new KioskButtons();
+	static KioskCS cs = new KioskCS();
+	static KioskSubTasks tasks = new KioskSubTasks(cs);
 	static int testcount;	
 	
 	@BeforeClass
@@ -19,7 +20,7 @@ public class KioskFireFox {
 		//Dennis environment
 		//String kioskIP = "http://192.168.11.150:3000/";
 		
-		buttons.getKiosk(kioskIP);
+		cs.getKiosk(kioskIP);
 		testcount = 0;
 	}
 	
@@ -32,7 +33,7 @@ public class KioskFireFox {
 	
 	@AfterClass
 	public static void done() {
-		buttons.closeKiosk();
+		cs.closeKiosk();
 	}
 	
 	@After
@@ -49,29 +50,29 @@ public class KioskFireFox {
 	//Test a simple transaction logging in as a cashier
 		System.out.println("Cashier Log In and Simple Transaction.");
 		try {
-			buttons.clickLoginB1();
-			buttons.clickLoginB1();
-			buttons.clickLoginB1();
-			buttons.clickLoginB1();
-			buttons.login();
+			cs.clickLoginB1();
+			cs.clickLoginB1();
+			cs.clickLoginB1();
+			cs.clickLoginB1();
+			cs.login();
 			
-			buttons.selectCashDrawer("SelfServiceNoCashDrawer");
-			buttons.addProductToCart("Apple");
-			buttons.addProductToCart("Banana");
+			cs.selectCashDrawer("SelfServiceNoCashDrawer");
+			cs.addProductToCart("Apple");
+			cs.addProductToCart("Banana");
 			
-			System.out.println("Before Pay button: "+buttons.getPaymentAmount());
+			System.out.println("Before Pay button: "+cs.getPaymentAmount());
 			
-			buttons.payBtn();
+			cs.payBtn();
 			
-			System.out.println("Payment Amount: "+buttons.getPaymentAmount());
+			System.out.println("Payment Amount: "+cs.getPaymentAmount());
 			
-			buttons.selectPaymentMethod("Cash");
-			buttons.quickAmountButton("EXACT CHANGE");
-			buttons.acceptTenderButton();
-			buttons.noReceipt();
-			buttons.usrOptionBtn();	
+			cs.selectPaymentMethod("Cash");
+			cs.quickAmountButton("EXACT CHANGE");
+			cs.acceptTenderButton();
+			cs.noReceipt();
+			cs.usrOptionBtn();	
 			
-			buttons.signOffBtn();
+			cs.signOffBtn();
 			
 			System.out.println("Passed.");
 			
@@ -87,26 +88,26 @@ public class KioskFireFox {
 		System.out.println("Manager Log In and Simple Transaction.");
 		try {
 			
-			buttons.clickLoginB9();
-			buttons.clickLoginB9();
-			buttons.clickLoginB9();
-			buttons.clickLoginB9();
-			buttons.login();
+			cs.clickLoginB9();
+			cs.clickLoginB9();
+			cs.clickLoginB9();
+			cs.clickLoginB9();
+			cs.login();
 			
-			buttons.selectCashDrawer("SelfServiceNoCashDrawer");
-			buttons.addProductToCart("Apple");
-			buttons.addProductToCart("Banana");
-			buttons.payBtn();
+			cs.selectCashDrawer("SelfServiceNoCashDrawer");
+			cs.addProductToCart("Apple");
+			cs.addProductToCart("Banana");
+			cs.payBtn();
 			
 			//System.out.println("Payment Amount: "+buttons.getPaymentAmount());
 			
-			buttons.selectPaymentMethod("Cash");
-			buttons.quickAmountButton("EXACT CHANGE");
-			buttons.acceptTenderButton();
-			buttons.noReceipt();
-			buttons.usrOptionBtn();	
+			cs.selectPaymentMethod("Cash");
+			cs.quickAmountButton("EXACT CHANGE");
+			cs.acceptTenderButton();
+			cs.noReceipt();
+			cs.usrOptionBtn();	
 			
-			buttons.signOffBtn();
+			cs.signOffBtn();
 		
 			System.out.println("Passed.");
 			
@@ -121,19 +122,15 @@ public class KioskFireFox {
 		System.out.println("Manager Log In and Verify Manager.");
 		try {
 			
-			buttons.clickLoginB9();
-			buttons.clickLoginB9();
-			buttons.clickLoginB9();
-			buttons.clickLoginB9();
-			buttons.login();
+			tasks.login("Manager");
 			
-			buttons.selectCashDrawer("SelfServiceNoCashDrawer");
-			buttons.usrOptionBtn();
+			cs.selectCashDrawer("SelfServiceNoCashDrawer");
+			cs.usrOptionBtn();			
+			System.out.println("User is: "+cs.getUserName());
 			
-			System.out.println("User is: "+buttons.getUserName());
+			tasks.resetKiosk("SelfServiceNoCashDrawer");
 			
-			buttons.signOffBtn();
-			
+			cs.signOffBtn();	
 			System.out.println("Passed.");
 			
 		} catch (Exception e) {
@@ -147,11 +144,26 @@ public class KioskFireFox {
 		System.out.println("Delibereate Fail.");
 		fail("Automatic failure.");
 	}
+
+	@Test
+	public void testNewLoginAndLogout() {
+		System.out.println("Test New Login and Logout");
+		if (tasks.login("Cashier"))
+			System.out.println("Logged in as Cashier.");
+		else
+			fail("Failed to login as Cashier.");
+		
+		cs.selectCashDrawer("SelfServiceNoCashDrawer");
+		
+		if (tasks.logout())
+			System.out.println("Logout succeeded.");
+		else
+			fail("Logout failed.");
+	}
 	
 	@Ignore
 	@Test
-	public void stub() {
-		
+	public void loginToMicroMart() {
+		cs.getKiosk("http://192.168.106.101:3000/mm/");
 	}
-
 }

@@ -4,7 +4,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ ADMFireFox.class, 
-				KioskFireFox.class })
+				KioskCSFireFox.class })
 
 public class AllTests {
 	

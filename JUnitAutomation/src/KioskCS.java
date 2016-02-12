@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class KioskButtons {
+public class KioskCS {
 
 	//class wide variables
 	//WebDriver driver = KioskFireFox.driverK;
@@ -24,7 +24,7 @@ public class KioskButtons {
 	static int waitTime = 5;
 	
 	//constructor
-	public KioskButtons() {
+	public KioskCS() {
 		System.out.println("Loading Kiosk Button Map.");
 	}
 	
