@@ -1,11 +1,14 @@
+package Engine;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class InputFields {
+public class ADMControls {
 	
-	WebDriver driver = ADMFireFox.driverADM;
+	WebDriver driver = new FirefoxDriver();
 	
-	public InputFields() {
+	public ADMControls() {
 		System.out.println("Loading ADM Field Inputs Map.");
 	}
 	

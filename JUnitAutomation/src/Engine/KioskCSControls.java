@@ -1,3 +1,4 @@
+package Engine;
 /**
  * KioskButtons.java
  * Written By: Tim Converse
@@ -16,15 +17,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class KioskCS {
+public class KioskCSControls {
 
 	//class wide variables
-	//WebDriver driver = KioskFireFox.driverK;
 	WebDriver driver = new FirefoxDriver();
 	static int waitTime = 5;
 	
 	//constructor
-	public KioskCS() {
+	public KioskCSControls() {
 		System.out.println("Loading Kiosk Button Map.");
 	}
 	

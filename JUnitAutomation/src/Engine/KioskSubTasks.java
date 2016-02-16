@@ -1,3 +1,5 @@
+package Engine;
+
 /**
  * KioskSubTasks.java
  * @author timconverse
@@ -9,12 +11,12 @@
 
 public class KioskSubTasks {
 
-	private KioskCS cashierService;
+	private KioskCSControls cashierService;
 	
 	/**
 	 * Constructor - takes a reference to the KioskButtons
 	 */
-	public KioskSubTasks(KioskCS buttons) {
+	public KioskSubTasks(KioskCSControls buttons) {
 		this.cashierService = buttons;
 		System.out.println("Initializing SubTasks.");
 	}
@@ -24,6 +26,10 @@ public class KioskSubTasks {
 	 * Takes a string.  If it recognizes "cashier" or "manager" then
 	 * it executes the default logins.  If not, it assumes that the 
 	 * string is the sequence of digits to be pressed.
+	 * 
+	 * Note: "cashier" and "manager" login information is defined
+	 * in the Org record and for testing purposes we default them
+	 * to "1111" and "9999" respectively.
 	 */
 	public boolean login(String type) {
 		type = type.toLowerCase();

@@ -7,10 +7,12 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import Engine.ADMControls;
+
 public class ADMFireFox {
 
 	static WebDriver driverADM = new FirefoxDriver();
-	static InputFields fieldsADM = new InputFields();
+	static ADMControls fieldsADM = new ADMControls();
 	
 	@Before
 	public void setup(){

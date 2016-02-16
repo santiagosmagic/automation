@@ -6,9 +6,12 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import Engine.KioskCSControls;
+import Engine.KioskSubTasks;
+
 public class KioskCSFireFox {
 
-	static KioskCS cs = new KioskCS();
+	static KioskCSControls cs = new KioskCSControls();
 	static KioskSubTasks tasks = new KioskSubTasks(cs);
 	static int testcount;	
 	
