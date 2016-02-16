@@ -1,5 +1,7 @@
 package Engine;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * KioskSubTasks.java
  * @author timconverse
@@ -70,9 +72,50 @@ public class KioskSubTasks {
 	 */
 	public boolean parseLoginString(String type) {
 	//ToDo: Implement 
-		System.out.println("Not yet implemented.");
+		String btn;
 		
-		return false;
+		if (StringUtils.isNumeric(type)) {
+			
+			for (int i=0; i<type.length(); i++ ){
+				btn = type.substring(i,i);
+					switch (btn) {
+					case "0" :
+						cashierService.clickLoginB0();
+						break;
+					case "1" :
+						cashierService.clickLoginB1();
+						break;
+					case "2" :
+						cashierService.clickLoginB2();
+						break;
+					case "3" :
+						cashierService.clickLoginB3();
+						break;
+					case "4" :
+						cashierService.clickLoginB4();
+						break;
+					case "5" :
+						cashierService.clickLoginB5();
+						break;
+					case "6" :
+						cashierService.clickLoginB6();
+						break;
+					case "7" :
+						cashierService.clickLoginB7();
+						break;
+					case "8" :
+						cashierService.clickLoginB8();
+						break;
+					case "9" :
+						cashierService.clickLoginB9();
+						break;
+					}
+				}
+			return true;
+		} else {
+			System.out.println("Can't parse Login.");
+			return false;
+		}
 	}
 	
 	/**
